@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const HalfPackagesCard = ({ card3 }) => {
   const { _id, title, img, price, description } = card3;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = (id) => {
+    setIsModalOpen(!isModalOpen);
+  };
   return (
     <div>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -17,24 +21,27 @@ const HalfPackagesCard = ({ card3 }) => {
               <button className="btn btn-primary">Buy Now</button>
             </Link>
             <div>
-              {/* You can open the modal using ID.showModal() method */}
               <button
-                className="btn"
-                onClick={() => window.my_modal_3.showModal()}
+                className="btn btn-active btn-ghost"
+                onClick={toggleModal}
               >
                 Details
               </button>
-              <dialog id="my_modal_3" className="modal">
-                <form method="dialog" className="modal-box">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                  <h3 className="font-bold text-lg">Hello!</h3>
-                  <p className="py-4">
-                    Press ESC key or click on ✕ button to close
-                  </p>
-                </form>
-              </dialog>
+              {isModalOpen && (
+                <div className=" flex items-center justify-center">
+                  <div className="modal modal-open">
+                    <div className="modal-box">
+                      <h2 className="text-xl font-semibold mb-4">{title}</h2>
+                      <p>{description}</p>
+                      <div className="modal-action">
+                        <button className="btn" onClick={toggleModal}>
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

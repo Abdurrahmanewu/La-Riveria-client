@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const PackgeCard = ({ card }) => {
-  const { _id, title, img, price } = card;
+  const { _id, title, img, price, description } = card;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = (id) => {
+    setIsModalOpen(!isModalOpen);
+  };
   return (
     <div>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -12,10 +16,33 @@ const PackgeCard = ({ card }) => {
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
           <p className="text-orange-600 text-xl font-bold">Price: ৳{price}</p>
-          <div className="card-actions justify-end">
+          <div className="card-actions justify-between">
             <Link>
               <button className="btn btn-primary">Buy Now</button>
             </Link>
+            <div>
+              <button
+                className="btn btn-active btn-ghost"
+                onClick={toggleModal}
+              >
+                Details
+              </button>
+              {isModalOpen && (
+                <div className=" flex items-center justify-center">
+                  <div className="modal modal-open">
+                    <div className="modal-box">
+                      <h2 className="text-xl font-semibold mb-4">{title}</h2>
+                      <p>{description}</p>
+                      <div className="modal-action">
+                        <button className="btn" onClick={toggleModal}>
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

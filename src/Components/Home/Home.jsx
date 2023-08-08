@@ -9,7 +9,6 @@ const Home = () => {
     <div className="mt-10">
       <Slider></Slider>
       <Features></Features>
-      <Packages></Packages>
       <HalfPackges></HalfPackges>
     </div>
   );
