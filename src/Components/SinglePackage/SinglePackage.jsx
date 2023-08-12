@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import DummyReviews from "../DummyReviews/DummyReviews";
 
 const SinglePackage = () => {
   const { _id, description, img, price, title } = useLoaderData();
@@ -20,8 +21,8 @@ const SinglePackage = () => {
         <div>
           <p className="text-2xl">{description}</p>
         </div>
+        <DummyReviews></DummyReviews>
       </div>
-      
     </div>
   );
 };
