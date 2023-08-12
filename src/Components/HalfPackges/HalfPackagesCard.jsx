@@ -22,7 +22,9 @@ const HalfPackagesCard = ({ card3 }) => {
             </Link>
             <div>
               <Link to={`/singlepackage/${_id}`}>
-                <button className="btn btn-active btn-ghost">Details</button>
+                <button className="btn btn-active btn-ghost">
+                  View Details
+                </button>
               </Link>
               {/* {isModalOpen && (
                 <div className=" flex items-center justify-center">

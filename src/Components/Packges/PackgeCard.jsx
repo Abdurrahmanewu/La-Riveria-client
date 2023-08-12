@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const PackgeCard = ({ card }) => {
   const { _id, title, img, price, description } = card;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModal = (id) => {
-    setIsModalOpen(!isModalOpen);
-  };
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const toggleModal = (id) => {
+  //   setIsModalOpen(!isModalOpen);
+  // };
   return (
     <div>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -21,13 +21,12 @@ const PackgeCard = ({ card }) => {
               <button className="btn btn-primary">Buy Now</button>
             </Link>
             <div>
-              <button
-                className="btn btn-active btn-ghost"
-                onClick={toggleModal}
-              >
-                Details
-              </button>
-              {isModalOpen && (
+              <Link to={`/singlepackage/${_id}`}>
+                <button className="btn btn-active btn-ghost">
+                  View Details
+                </button>
+              </Link>
+              {/* {isModalOpen && (
                 <div className=" flex items-center justify-center">
                   <div className="modal modal-open">
                     <div className="modal-box">
@@ -41,7 +40,7 @@ const PackgeCard = ({ card }) => {
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
