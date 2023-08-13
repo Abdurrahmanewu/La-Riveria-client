@@ -5,6 +5,7 @@ import Packages from "../Components/Packges/Packages";
 import SignUp from "../Access/SignUp/SignUp";
 import Login from "../Access/Login/Login";
 import SinglePackage from "../Components/SinglePackage/SinglePackage";
+import MyReviews from "../Components/MyReviews/MyReviews";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,11 @@ const router = createBrowserRouter([
         element: <SinglePackage></SinglePackage>,
         loader: ({ params }) =>
           fetch(`http://localhost:5005/packages/${params.id}`),
+      },
+      {
+        path: "/myreviews",
+        element: <MyReviews></MyReviews>,
+        loader: () => fetch("http://localhost:5005/reviews"),
       },
     ],
   },
