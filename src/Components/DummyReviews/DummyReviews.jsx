@@ -57,7 +57,7 @@ const DummyReviews = () => {
             </div>
             <div>
               <h4 className="font-bold">Leroy Jenkins</h4>
-              <span className="text-xs text-gray-400">2 days ago</span>
+              <span className="text-xs text-gray-400">5 days ago</span>
             </div>
           </div>
           <div className="flex items-center space-x-2 text-yellow-500">
@@ -96,7 +96,7 @@ const DummyReviews = () => {
             </div>
             <div>
               <h4 className="font-bold">Hanna Mckay</h4>
-              <span className="text-xs text-gray-400">2 days ago</span>
+              <span className="text-xs text-gray-400">8 days ago</span>
             </div>
           </div>
           <div className="flex items-center space-x-2 text-yellow-500">

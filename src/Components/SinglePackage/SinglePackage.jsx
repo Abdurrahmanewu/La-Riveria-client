@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import DummyReviews from "../DummyReviews/DummyReviews";
+import UserRiview from "../UserRiveiw/UserRiview";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const SinglePackage = () => {
-  const { _id, description, img, price, title } = useLoaderData();
+  const { user } = useContext(AuthContext);
+  const singlePackageData = useLoaderData();
+  const { _id, description, img, price, title } = singlePackageData;
+  // console.log(singlePackageData);
 
   return (
     <div className="mt-20">
@@ -22,6 +27,13 @@ const SinglePackage = () => {
           <p className="text-2xl">{description}</p>
         </div>
         <DummyReviews></DummyReviews>
+        <div className="mt-10">
+          {user?.email ? (
+            <UserRiview singlePackageData={singlePackageData}></UserRiview>
+          ) : (
+            <h2>Please login to add a review</h2>
+          )}
+        </div>
       </div>
     </div>
   );
