@@ -12,6 +12,29 @@ const UserRiview = ({ singlePackageData }) => {
     const rating = form.rating.value;
     const message = form.message.value;
     console.log(name, email, rating, message);
+    const review = {
+      packageName: title,
+      guestName: name,
+      guestEmail: email,
+      rating: rating,
+      message: message,
+    };
+    fetch("http://localhost:5005/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          alert("Review placed successfully");
+          form.reset();
+        }
+      })
+      .catch((e) => console.error(e));
   };
 
   return (
