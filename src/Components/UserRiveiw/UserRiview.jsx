@@ -40,7 +40,7 @@ const UserRiview = ({ singlePackageData }) => {
   return (
     <div>
       <form onSubmit={handleReview}>
-        <h2 className="text-4xl">Pease add a review for {title}</h2>
+        <h2 className="text-4xl mb-5">Pease add a review for {title}</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <input
             name="firstName"
@@ -72,13 +72,13 @@ const UserRiview = ({ singlePackageData }) => {
         </div>
         <textarea
           name="message"
-          className="textarea textarea-bordered h-24 w-full"
+          className="textarea textarea-bordered h-24 w-full mt-5"
           placeholder="Your Message"
           required
         ></textarea>
         {/* <button className="btn btn-warning">Submit</button> */}
 
-        <input className="btn" type="submit" value="Add review" />
+        <input className="btn mt-5" type="submit" value="Add review" />
       </form>
     </div>
   );

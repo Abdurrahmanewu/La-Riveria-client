@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import DummyReviews from "../DummyReviews/DummyReviews";
 import UserRiview from "../UserRiveiw/UserRiview";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import MyReviews from "../MyReviews/MyReviews";
 
 const SinglePackage = () => {
   const { user } = useContext(AuthContext);
