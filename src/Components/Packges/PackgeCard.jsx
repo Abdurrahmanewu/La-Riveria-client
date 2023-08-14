@@ -17,7 +17,7 @@ const PackgeCard = ({ card }) => {
           <h2 className="card-title">{title}</h2>
           <p className="text-orange-600 text-xl font-bold">Price: ৳{price}</p>
           <div className="card-actions justify-between">
-            <Link>
+            <Link to={`/checkout/${_id}`}>
               <button className="btn btn-primary">Buy Now</button>
             </Link>
             <div>

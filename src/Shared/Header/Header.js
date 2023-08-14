@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Logo/logo.svg";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import { FaUser } from "react-icons/fa";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -10,25 +11,27 @@ const Header = () => {
       .then({})
       .catch((e) => console.log(e));
   };
+
   const menuItems = (
     <>
       <li className="font-semibold">
         <Link to="/">Home</Link>
       </li>
       <li className="font-semibold">
-        <Link to="/login">about</Link>
+        {user?.email ? <Link to="/packges">Add Packages</Link> : <></>}
       </li>
       <li className="font-semibold">
-        <Link to="/login">Service</Link>
+        {user?.email ? <Link>My orders</Link> : <></>}
       </li>
       <li className="font-semibold">
-        <Link to="/orders">Orders</Link>
+        {user?.email ? <Link to="/myreviews">My reviews</Link> : <></>}
       </li>
+
       <li className="font-semibold">
         <Link to="/signup">SignUp/Login</Link>
       </li>
-
       <li>{user?.email}</li>
+      <li></li>
     </>
   );
   return (
@@ -65,7 +68,13 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{menuItems}</ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end flex justify-between">
+        {user?.photoURL ? (
+          <img src={user?.photoURL} alt="" className="w-16 rounded-xl" />
+        ) : (
+          <FaUser></FaUser>
+        )}
+
         {user?.uid ? (
           <Link
             onClick={handleLogOut}
