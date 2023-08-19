@@ -7,6 +7,7 @@ import Login from "../Access/Login/Login";
 import SinglePackage from "../Components/SinglePackage/SinglePackage";
 import MyReviews from "../Components/MyReviews/MyReviews";
 import CheckOuts from "../Components/CheckOut/CheckOuts";
+import Orders from "../Components/Orders/Orders";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         element: <CheckOuts></CheckOuts>,
         loader: ({ params }) =>
           fetch(`http://localhost:5005/packages/${params.id}`),
+      },
+      {
+        path: "/orders",
+        element: <Orders></Orders>,
       },
     ],
   },

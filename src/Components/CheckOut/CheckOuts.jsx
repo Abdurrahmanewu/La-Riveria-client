@@ -16,7 +16,8 @@ const CheckOuts = () => {
     console.log(name, email, phone, message);
 
     const order = {
-      serviceName: title,
+      packageName: title,
+      packageId: _id,
       price: price,
       customer: name,
       email: email,
