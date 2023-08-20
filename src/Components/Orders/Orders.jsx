@@ -10,7 +10,24 @@ const Orders = () => {
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [user?.email]);
-  console.log(orders);
+  // console.log(orders);
+  const handleDelete = (id) => {
+    const confirmation = window.confirm("Sure want to delete this item?");
+    if (confirmation) {
+      fetch(`http://localhost:5005/orders/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("This package deleted successfully");
+            const remaining = orders.filter((ord) => ord._id !== id);
+            setOrders(remaining);
+          }
+        });
+    }
+  };
   return (
     <div>
       <h1>This is order section {orders.length}</h1>
@@ -28,7 +45,11 @@ const Orders = () => {
           </thead>
           <tbody>
             {orders.map((order) => (
-              <OrderRow key={order._id} order={order}></OrderRow>
+              <OrderRow
+                key={order._id}
+                order={order}
+                handleDelete={handleDelete}
+              ></OrderRow>
             ))}
           </tbody>
         </table>

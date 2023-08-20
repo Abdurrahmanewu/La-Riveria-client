@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const OrderRow = ({ order }) => {
+const OrderRow = ({ order, handleDelete }) => {
   const { _id, packageName, packageId, price, customer, phone } = order;
   // console.log(order);
   const [orderedPackage, setOrderedPackage] = useState({});
@@ -8,7 +8,7 @@ const OrderRow = ({ order }) => {
     fetch(`http://localhost:5005/packages/${packageId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setOrderedPackage(data);
       });
   }, [packageId]);
@@ -19,7 +19,7 @@ const OrderRow = ({ order }) => {
         <th>
           <label>
             <button
-              // onClick={() => handleDelete(_id)}
+              onClick={() => handleDelete(_id)}
               className="btn btn-circle btn-outline"
             >
               <svg
