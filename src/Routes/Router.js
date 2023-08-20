@@ -8,6 +8,7 @@ import SinglePackage from "../Components/SinglePackage/SinglePackage";
 import MyReviews from "../Components/MyReviews/MyReviews";
 import CheckOuts from "../Components/CheckOut/CheckOuts";
 import Orders from "../Components/Orders/Orders";
+import Blog from "../Components/Blog/Blog";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
         element: <Orders></Orders>,
       },
     ],
+  },
+  {
+    path: "/blog",
+    element: <Blog></Blog>,
   },
 ]);
 

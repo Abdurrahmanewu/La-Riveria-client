@@ -31,7 +31,9 @@ const Header = () => {
         <Link to="/signup">SignUp/Login</Link>
       </li>
       <li>{user?.email}</li>
-      <li></li>
+      <li className="font-bold">
+        <Link to="/blog">Blog Page</Link>
+      </li>
     </>
   );
   return (

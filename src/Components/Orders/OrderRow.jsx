@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const OrderRow = ({ order, handleDelete }) => {
-  const { _id, packageName, packageId, price, customer, phone } = order;
+const OrderRow = ({ order, handleDelete, handleStatusUpdate }) => {
+  const { _id, packageName, packageId, price, customer, phone, status } = order;
   // console.log(order);
   const [orderedPackage, setOrderedPackage] = useState({});
   useEffect(() => {
@@ -59,9 +59,11 @@ const OrderRow = ({ order, handleDelete }) => {
           <br />
           <span className="badge badge-ghost badge-lg">৳{price}</span>
         </td>
-        <td>Purple</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
+        {/* <td>Purple</td> */}
+        <th className="pl-72">
+          <button onClick={()=>handleStatusUpdate(_id)} className="btn btn-ghost btn-lg text-slate-600 text-lg font-bold  ">
+            {status ? status : "Pending"}
+          </button>
         </th>
       </tr>
     </div>
