@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
-const MyReviewCard = ({ data }) => {
+const MyReviewCard = ({ data, handleDeletereview }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = (id) => {
+    setIsModalOpen(!isModalOpen);
+  };
   const { user } = useContext(AuthContext);
-  const { guestName, packageName, message, rating } = data;
+  const { guestName, packageName, message, rating, _id } = data;
   return (
     <div>
       <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-900 bg-slate-100 text-gray-950">
@@ -36,6 +40,32 @@ const MyReviewCard = ({ data }) => {
         </div>
         <div className="p-4 space-y-2 text-sm text-gray-900">
           <p>{message}</p>
+        </div>
+        <div className="mt-10 flex justify-between pt-5 ">
+          <button
+            onClick={() => handleDeletereview(_id)}
+            className="btn btn-warning text-xs"
+          >
+            Delete Review
+          </button>
+          <button onClick={toggleModal} className="btn btn-success text-xs">
+            Update Review
+          </button>
+          {isModalOpen && (
+            <div className=" flex items-center justify-center">
+              <div className="modal modal-open">
+                <div className="modal-box">
+                  <h2 className="text-xl font-semibold mb-4">review</h2>
+                  <p>message</p>
+                  <div className="modal-action">
+                    <button className="btn" onClick={toggleModal}>
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

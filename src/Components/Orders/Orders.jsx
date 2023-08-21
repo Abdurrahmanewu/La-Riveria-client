@@ -43,8 +43,9 @@ const Orders = () => {
         console.log(data);
         if (data.modifiedCount > 0) {
           const remaining = orders.filter((ord) => ord._id !== id);
-          const approvedPackage = orders.find((ord) => ord._id === id);
+          const approvedPackage = orders.find((ord) => ord._id == id);
           approvedPackage.status = "Package Updated";
+          // ata holo spa er jonno.
           const newOrders = [approvedPackage, ...remaining];
           setOrders(newOrders);
         }

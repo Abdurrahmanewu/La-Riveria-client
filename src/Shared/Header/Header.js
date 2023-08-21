@@ -71,11 +71,12 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1">{menuItems}</ul>
       </div>
       <div className="navbar-end flex justify-between">
-        {user?.photoURL ? (
-          <img src={user?.photoURL} alt="" className="w-16 rounded-xl" />
-        ) : (
-          <FaUser></FaUser>
-        )}
+        {
+          user?.photoURL && (
+            <img src={user?.photoURL} alt="" className="w-16 rounded-xl" />
+          )
+          // <FaUser></FaUser>
+        }
 
         {user?.uid ? (
           <Link

@@ -18,6 +18,7 @@ const UserRiview = ({ singlePackageData }) => {
       guestEmail: email,
       rating: rating,
       message: message,
+      date: new Date(),
     };
     fetch("http://localhost:5005/reviews", {
       method: "POST",

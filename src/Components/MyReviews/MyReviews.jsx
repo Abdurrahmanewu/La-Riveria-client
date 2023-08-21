@@ -1,16 +1,46 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 import MyReviewCard from "./MyReviewCard";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const MyReviews = () => {
-  const myReviewsData = useLoaderData();
-  console.log(myReviewsData);
+  
+  const { user } = useContext(AuthContext);
+  const [userReviews, setUserReviews] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:5005/reviews?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserReviews(data);
+      });
+  }, [user?.email]);
+  // console.log(userReviews);
+  const handleDeletereview = (id) => {
+    const confirmation = window.confirm("Sure want to delete this review?");
+    if (confirmation) {
+      fetch(`http://localhost:5005/reviews/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("This review deleted successfully");
+            const remaining = userReviews.filter((review) => review._id !== id);
+            setUserReviews(remaining);
+          }
+        });
+    }
+  };
   return (
     <div className="mt-20">
       <h1 className="text-4xl mb-10">This is my reviews</h1>
       <div className="grid grid-cols-3 gap-5">
-        {myReviewsData.map((data) => (
-          <MyReviewCard key={data._id} data={data}></MyReviewCard>
+        {userReviews.map((data) => (
+          <MyReviewCard
+            key={data._id}
+            data={data}
+            handleDeletereview={handleDeletereview}
+          ></MyReviewCard>
         ))}
       </div>
       {/* <div className="grid grid-cols-3 gap-5">
