@@ -20,7 +20,7 @@ const UserRiview = ({ singlePackageData }) => {
       message: message,
       date: new Date(),
     };
-    fetch("http://localhost:5005/reviews", {
+    fetch("https://la-riveria-server.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",

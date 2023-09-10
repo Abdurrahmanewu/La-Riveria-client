@@ -8,7 +8,7 @@ const Orders = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5005/orders?email=${user?.email}`)
+    fetch(`https://la-riveria-server.vercel.app/orders?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [user?.email]);
@@ -16,7 +16,7 @@ const Orders = () => {
   const handleDelete = (id) => {
     const confirmation = window.confirm("Sure want to delete this item?");
     if (confirmation) {
-      fetch(`http://localhost:5005/orders/${id}`, {
+      fetch(`https://la-riveria-server.vercel.app/orders/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -31,7 +31,7 @@ const Orders = () => {
     }
   };
   const handleStatusUpdate = (id) => {
-    fetch(`http://localhost:5005/orders/${id}`, {
+    fetch(`https://la-riveria-server.vercel.app/orders/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -49,7 +49,8 @@ const Orders = () => {
           const newOrders = [approvedPackage, ...remaining];
           setOrders(newOrders);
         }
-      });
+      })
+      .catch((e) => console.error(e));
   };
   return (
     <div>

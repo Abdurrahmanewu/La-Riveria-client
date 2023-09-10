@@ -5,7 +5,7 @@ const OrderRow = ({ order, handleDelete, handleStatusUpdate }) => {
   // console.log(order);
   const [orderedPackage, setOrderedPackage] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5005/packages/${packageId}`)
+    fetch(`https://la-riveria-server.vercel.app/packages/${packageId}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -61,7 +61,10 @@ const OrderRow = ({ order, handleDelete, handleStatusUpdate }) => {
         </td>
         {/* <td>Purple</td> */}
         <th className="pl-72">
-          <button onClick={()=>handleStatusUpdate(_id)} className="btn btn-ghost btn-lg text-slate-600 text-lg font-bold  ">
+          <button
+            onClick={() => handleStatusUpdate(_id)}
+            className="btn btn-ghost btn-lg text-slate-600 text-lg font-bold  "
+          >
             {status ? status : "Pending"}
           </button>
         </th>

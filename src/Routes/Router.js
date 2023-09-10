@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         path: "/singlepackage/:id",
         element: <SinglePackage></SinglePackage>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5005/packages/${params.id}`),
+          fetch(`https://la-riveria-server.vercel.app/packages/${params.id}`),
       },
       {
         path: "/myreviews",
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         path: "/checkout/:id",
         element: <CheckOuts></CheckOuts>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5005/packages/${params.id}`),
+          fetch(`https://la-riveria-server.vercel.app/packages/${params.id}`),
       },
       {
         path: "/orders",

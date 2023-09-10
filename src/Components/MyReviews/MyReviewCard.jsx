@@ -1,13 +1,43 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import Orders from "../Orders/Orders";
 
-const MyReviewCard = ({ data, handleDeletereview }) => {
+const MyReviewCard = ({
+  data,
+  handleDeletereview,
+  setUserReviews,
+  userReviews,
+}) => {
+  const { guestName, packageName, message, rating, _id } = data;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModal = (id) => {
+  const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
   const { user } = useContext(AuthContext);
-  const { guestName, packageName, message, rating, _id } = data;
+  const handleUpdateReview = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const message = form.message.value;
+    console.log(message);
+    fetch(`https://la-riveria-server.vercel.app/reviews/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ message: message }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const updated = userReviews.find((review) => review._id == _id);
+        updated.message = message;
+        const reamaining = userReviews.filter((review) => review._id !== _id);
+        const newUpdate = [updated, ...reamaining];
+        setUserReviews(newUpdate);
+        toggleModal();
+      })
+      .catch((e) => console.log(e));
+  };
   return (
     <div>
       <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-900 bg-slate-100 text-gray-950">
@@ -55,8 +85,23 @@ const MyReviewCard = ({ data, handleDeletereview }) => {
             <div className=" flex items-center justify-center">
               <div className="modal modal-open">
                 <div className="modal-box">
-                  <h2 className="text-xl font-semibold mb-4">review</h2>
-                  <p>message</p>
+                  <h2 className="text-xl font-semibold mb-4">
+                    Update your review
+                  </h2>
+                  <form onSubmit={handleUpdateReview}>
+                    <textarea
+                      name="message"
+                      className="textarea textarea-bordered h-24 w-full mt-5"
+                      placeholder="Your Message"
+                      required
+                    ></textarea>
+                    <input
+                      className="btn mt-5"
+                      type="submit"
+                      value="Update review"
+                      // onClick={toggleModal}
+                    />
+                  </form>
                   <div className="modal-action">
                     <button className="btn" onClick={toggleModal}>
                       Close

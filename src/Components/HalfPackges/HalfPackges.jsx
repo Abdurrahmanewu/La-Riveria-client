@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const HalfPackges = () => {
   const [packages3, setPackages3] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5005/packages?limit=3")
+    fetch("https://la-riveria-server.vercel.app/packages?limit=3")
       .then((res) => res.json())
       .then((data) => {
         setPackages3(data);

@@ -24,7 +24,7 @@ const CheckOuts = () => {
       phone: phone,
       message: message,
     };
-    fetch("http://localhost:5005/orders", {
+    fetch("https://la-riveria-server.vercel.app/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",

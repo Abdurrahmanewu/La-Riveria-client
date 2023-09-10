@@ -3,21 +3,21 @@ import MyReviewCard from "./MyReviewCard";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const MyReviews = () => {
-  
   const { user } = useContext(AuthContext);
   const [userReviews, setUserReviews] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5005/reviews?email=${user?.email}`)
+    fetch(`https://la-riveria-server.vercel.app/reviews?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserReviews(data);
-      });
+      })
+      .catch((e) => console.error(e));
   }, [user?.email]);
-  // console.log(userReviews);
+  console.log(userReviews);
   const handleDeletereview = (id) => {
     const confirmation = window.confirm("Sure want to delete this review?");
     if (confirmation) {
-      fetch(`http://localhost:5005/reviews/${id}`, {
+      fetch(`https://la-riveria-server.vercel.app/reviews/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -28,9 +28,27 @@ const MyReviews = () => {
             const remaining = userReviews.filter((review) => review._id !== id);
             setUserReviews(remaining);
           }
-        });
+        })
+        .catch((e) => console.error(e));
     }
   };
+
+  // const handleUpdateReview = (event,_id) => {
+  //   event.preventDefault();
+  //   const form = event.target;
+  //   const message = form.message.value;
+  //   console.log(message);
+  //   fetch(`https://la-riveria-server.vercel.app/reviews/${_id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify({ message: message }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data))
+  //     .catch((e) => console.log(e));
+  // };
   return (
     <div className="mt-20">
       <h1 className="text-4xl mb-10">This is my reviews</h1>
@@ -40,6 +58,9 @@ const MyReviews = () => {
             key={data._id}
             data={data}
             handleDeletereview={handleDeletereview}
+            // handleUpdateReview={handleUpdateReview}
+            userReviews={userReviews}
+            setUserReviews={setUserReviews}
           ></MyReviewCard>
         ))}
       </div>
