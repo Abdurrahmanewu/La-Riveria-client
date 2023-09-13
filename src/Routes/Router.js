@@ -9,6 +9,7 @@ import MyReviews from "../Components/MyReviews/MyReviews";
 import CheckOuts from "../Components/CheckOut/CheckOuts";
 import Orders from "../Components/Orders/Orders";
 import Blog from "../Components/Blog/Blog";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,11 +25,11 @@ const router = createBrowserRouter([
         element: <Packages></Packages>,
       },
       {
-        path: "signup",
+        path: "/signup",
         element: <SignUp></SignUp>,
       },
       {
-        path: "login",
+        path: "/login",
         element: <Login></Login>,
       },
       {
@@ -43,7 +44,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout/:id",
-        element: <CheckOuts></CheckOuts>,
+        element: (
+          <PrivateRoute>
+            <CheckOuts></CheckOuts>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`https://la-riveria-server.vercel.app/packages/${params.id}`),
       },

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+// import "react-photo-view/dist/index.css";
 
 const PackgeCard = ({ card }) => {
   const { _id, title, img, price, description } = card;
@@ -7,6 +9,7 @@ const PackgeCard = ({ card }) => {
   // const toggleModal = (id) => {
   //   setIsModalOpen(!isModalOpen);
   // };
+  // console.log(card);
   return (
     <div>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">

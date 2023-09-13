@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import DummyReviews from "../DummyReviews/DummyReviews";
 import UserRiview from "../UserRiveiw/UserRiview";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
-
+import useTitle from "../../hooks/useTitle";
 
 const SinglePackage = () => {
   const { user } = useContext(AuthContext);
   const singlePackageData = useLoaderData();
   const { _id, description, img, price, title } = singlePackageData;
   // console.log(singlePackageData);
+  useTitle(title);
 
   return (
     <div className="mt-20">
@@ -32,7 +33,13 @@ const SinglePackage = () => {
           {user?.email ? (
             <UserRiview singlePackageData={singlePackageData}></UserRiview>
           ) : (
-            <h2>Please login to add a review</h2>
+            <h2 className="text-3xl">
+              Please{" "}
+              <Link className="text-green-500 font-bold" to="/login">
+                login
+              </Link>{" "}
+              to add a review
+            </h2>
           )}
         </div>
       </div>

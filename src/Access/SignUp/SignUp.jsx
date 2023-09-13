@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import useTitle from "../../hooks/useTitle";
 
 const SignUp = () => {
   const { createUser, googleLogin } = useContext(AuthContext);
@@ -28,6 +29,7 @@ const SignUp = () => {
       })
       .catch((e) => console.log(e));
   };
+  useTitle("SignUp");
   return (
     <div className="mt-28 flex justify-center">
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-600 text-gray-100 ">
@@ -74,7 +76,11 @@ const SignUp = () => {
           <div className="flex-1 h-px sm:w-16 bg-gray-700"></div>
         </div>
         <div className="flex justify-center space-x-4">
-          <button onClick={handleGoogleLogin} aria-label="Log in with Google" className="p-3 rounded-sm">
+          <button
+            onClick={handleGoogleLogin}
+            aria-label="Log in with Google"
+            className="p-3 rounded-sm"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"

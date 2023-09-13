@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import MyReviewCard from "./MyReviewCard";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
@@ -49,6 +50,7 @@ const MyReviews = () => {
   //     .then((data) => console.log(data))
   //     .catch((e) => console.log(e));
   // };
+  useTitle("My Reviews");
   return (
     <div className="mt-20">
       <h1 className="text-4xl mb-10">This is my reviews</h1>

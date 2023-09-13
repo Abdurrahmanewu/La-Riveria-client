@@ -3,6 +3,7 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import OrderRow from "./OrderRow";
 import { paste } from "@testing-library/user-event/dist/paste";
 import { json } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 const Orders = () => {
   const { user } = useContext(AuthContext);
@@ -52,10 +53,11 @@ const Orders = () => {
       })
       .catch((e) => console.error(e));
   };
+  useTitle("My Orders");
   return (
     <div>
       {orders.length < 1 ? (
-        <p className="text-5xl mt-10 text-center">Ther are no orders</p>
+        <p className="text-5xl mt-10 text-center">There are no orders</p>
       ) : (
         <div>
           <h2 className="text-4xl text-center my-10">My Ordered Packages</h2>
